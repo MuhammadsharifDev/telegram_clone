@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:telegram_clone/src/routes/app_routes.dart';
-import 'package:telegram_clone/src/routes/routes_name.dart';
 import 'firebase_options.dart';
+import 'routes/app_routes.dart';
+import 'routes/routes_name.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const KeyboardDismisser(
       child:  MaterialApp(
+        debugShowCheckedModeBanner: false,
         initialRoute: RoutesName.login,
         onGenerateRoute: AppRoutes.onGenerateRoute,
       ),
