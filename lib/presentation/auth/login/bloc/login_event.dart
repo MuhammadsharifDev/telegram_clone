@@ -18,3 +18,10 @@ class SignInEvent extends LoginEvent {
   @override
   List<Object?> get props => [];
 }
+
+
+class RegstrWithGoogleEvent extends LoginEvent{
+    RegstrWithGoogleEvent();
+   @override
+   List<Object?> get props=>[];
+}

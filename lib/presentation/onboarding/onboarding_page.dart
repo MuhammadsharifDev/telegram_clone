@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telegram_clone/core/utils/app_colors.dart';
+import 'package:telegram_clone/core/widgets/bottomstyle/bottomstyle_widget.dart';
 import 'package:telegram_clone/core/widgets/textstyle/text_style.dart';
 import 'package:telegram_clone/presentation/onboarding/bloc/onboard_bloc.dart';
 import 'package:telegram_clone/routes/routes_name.dart';
-
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -22,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(70, 30),
-                    backgroundColor: AppColors.C_36B8B8,
+                    backgroundColor: AppColors.C_36B8B8.withOpacity(0.25),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     )),
@@ -42,7 +42,7 @@ class OnboardingPage extends StatelessWidget {
               itemCount: state.items.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Column(
                     children: [
                       SizedBox(
@@ -59,8 +59,27 @@ class OnboardingPage extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: 60,),
-                    index==state.items.length-1?Text('S'):Text('kkkk'),
+                      SizedBox(
+                        height: media.size.height * 95 / 640,
+                      ),
+                      index == state.items.length - 1
+                          ? ElevatedButton(
+                              style: BottomStyleModel.item(),
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutesName.login);
+                              },
+                              child: TextStyleModel.items(
+                                  text: 'Get Started', size: 18),
+                            )
+                          : ElevatedButton(
+                              style: BottomStyleModel.item(),
+                              onPressed: () {
+
+                              },
+                              child:
+                                  TextStyleModel.items(text: 'Next', size: 18),
+                      ),
                     ],
                   ),
                 );

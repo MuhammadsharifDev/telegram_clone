@@ -10,23 +10,20 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SplashBloc()..add(SplashInitEvent()),
-      child: BlocListener<SplashBloc, SplashState>(
-        listener: (context, state) {
-          if (state is SplashEndedState) {
-            Navigator.pushReplacementNamed(context, state.route);
-          }
-        },
-        child: Scaffold(
-          backgroundColor: AppColors.C_36B8B8,
-          body: SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: Image.asset(
-              AppImages.splash_image,
-              fit: BoxFit.cover,
-            ),
+    return BlocListener<SplashBloc, SplashState>(
+      listener: (context, state) {
+        if (state is SplashEndedState) {
+          Navigator.pushReplacementNamed(context, state.route);
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.C_36B8B8,
+        body: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: Image.asset(
+            AppImages.splash_image,
+            fit: BoxFit.cover,
           ),
         ),
       ),

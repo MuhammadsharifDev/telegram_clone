@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telegram_clone/presentation/main/bloc/main_bloc.dart';
 import 'package:telegram_clone/presentation/main/chat_page/chat_page.dart';
+import 'package:telegram_clone/presentation/main/settings/setting_page.dart';
+
+import 'contacts/contacts_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -15,6 +18,8 @@ class MainPage extends StatelessWidget {
             index: state.bottomMenu.index,
             children: const [
               ChatPage(),
+              ContactsPage(),
+              SettingPage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

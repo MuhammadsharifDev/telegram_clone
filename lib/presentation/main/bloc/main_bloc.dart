@@ -15,4 +15,4 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     emit(state.copyWith(bottomMenu: event.menu));
   }
 }
-enum BottomMenu { home, wishlist, basket,search,setting }
+enum BottomMenu { chat,  contacts,setting }

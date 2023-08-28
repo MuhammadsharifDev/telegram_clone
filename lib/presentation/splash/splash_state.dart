@@ -16,3 +16,7 @@ class SplashEndedState extends SplashState {
   @override
   List<Object?> get props => [route];
 }
+
+
+
+

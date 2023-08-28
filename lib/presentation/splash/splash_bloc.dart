@@ -18,8 +18,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       } else {
         emit(SplashEndedState(route: RoutesName.login));
       }
-    });
+    },
+    );
   }
-
-  final textEditingController = TextEditingController();
 }

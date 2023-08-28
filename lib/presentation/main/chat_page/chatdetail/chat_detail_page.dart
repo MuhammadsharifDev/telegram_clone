@@ -2,14 +2,14 @@ import 'package:telegram_clone/core/widgets/textfield/textfiled_model.dart';
 import 'package:telegram_clone/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class DetailChatPage extends StatefulWidget {
-  const DetailChatPage({super.key});
+class ChatDetailPage extends StatefulWidget {
+  const ChatDetailPage({super.key});
 
   @override
-  State<DetailChatPage> createState() => _DetailChatPageState();
+  State<ChatDetailPage> createState() => _ChatDetailPageState();
 }
 
-class _DetailChatPageState extends State<DetailChatPage> {
+class _ChatDetailPageState extends State<ChatDetailPage> {
 
 
   @override

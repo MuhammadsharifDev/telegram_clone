@@ -6,7 +6,7 @@ class MainState extends Equatable {
 
   final BottomMenu bottomMenu;
 
-  const MainState({this.bottomMenu = BottomMenu.home});
+  const MainState({this.bottomMenu = BottomMenu.chat});
 
   MainState copyWith({BottomMenu? bottomMenu}) =>
       MainState(bottomMenu: bottomMenu ?? this.bottomMenu);

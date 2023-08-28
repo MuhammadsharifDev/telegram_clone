@@ -3,24 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:telegram_clone/core/widgets/textstyle/text_style.dart';
 import 'package:telegram_clone/routes/routes_name.dart';
 
-class LeadingWidget extends StatelessWidget {
-  const LeadingWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 150),
-      child: IconButton(
-        onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RoutesName.splash, (route) => false);
-        },
-        icon: const Icon(Icons.arrow_back),
-      ),
-    );
-  }
-}
-
 class TitleWidget extends StatelessWidget {
   const TitleWidget({super.key});
 
