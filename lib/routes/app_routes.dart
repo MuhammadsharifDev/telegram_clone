@@ -4,14 +4,13 @@ import 'package:telegram_clone/presentation/auth/login/bloc/login_bloc.dart';
 import 'package:telegram_clone/presentation/auth/login/login_page.dart';
 import 'package:telegram_clone/presentation/auth/signup/bloc/signup_bloc.dart';
 import 'package:telegram_clone/presentation/auth/signup/sign_up_page.dart';
-import 'package:telegram_clone/presentation/main/bloc/main_bloc.dart';
-import 'package:telegram_clone/presentation/main/chat_page/bloc/chat_bloc.dart';
-import 'package:telegram_clone/presentation/main/chat_page/chat_page.dart';
 import 'package:telegram_clone/presentation/main/chat_page/chatdetail/chat_detail_page.dart';
+import 'package:telegram_clone/presentation/main/contacts/contacts_page.dart';
 import 'package:telegram_clone/presentation/main/main_page.dart';
+import 'package:telegram_clone/presentation/main/settings/edit_user/edit_user_page.dart';
+import 'package:telegram_clone/presentation/main/settings/setting_page.dart';
 import 'package:telegram_clone/presentation/onboarding/bloc/onboard_bloc.dart';
 import 'package:telegram_clone/presentation/onboarding/onboarding_page.dart';
-import 'package:telegram_clone/presentation/splash/splash_bloc.dart';
 import 'package:telegram_clone/presentation/splash/splash_page.dart';
 import 'package:telegram_clone/routes/routes_name.dart';
 
@@ -22,10 +21,7 @@ sealed class AppRoutes {
     switch (settings.name) {
       case RoutesName.splash:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => SplashBloc()..add(SplashInitEvent()),
-            child: const SplashPage(),
-          ),
+          builder: (context) => const SplashPage(),
         );
       case RoutesName.onboarding:
         return MaterialPageRoute(
@@ -43,12 +39,9 @@ sealed class AppRoutes {
         );
       case RoutesName.main:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => MainBloc(),
-            child: const MainPage(),
-          ),
+          builder: (context) =>  MainPage(),
         );
-      case RoutesName.detailChatPage:
+      case RoutesName.chatDetailPage:
         return MaterialPageRoute(
           builder: (context) => const ChatDetailPage(),
         );
@@ -58,6 +51,19 @@ sealed class AppRoutes {
             create: (context) => SignupBloc(),
             child: SignupPage(),
           ),
+        );
+      case RoutesName.editUser:
+        return MaterialPageRoute(
+          builder: (context) =>   EditUserPage(),
+        );
+
+      case RoutesName.settingPage:
+        return MaterialPageRoute(
+          builder: (context) =>   const SettingPage(),
+        );
+      case RoutesName.contactsPage:
+        return MaterialPageRoute(
+          builder: (context) =>   const ContactsPage(),
         );
 
     }

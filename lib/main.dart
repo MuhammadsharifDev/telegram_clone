@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:telegram_clone/data/repository/user_contact_repository.dart';
-import 'package:telegram_clone/presentation/main/settings/bloc/setting_bloc.dart';
-import 'package:telegram_clone/presentation/main/settings/cubit/setting_cubit.dart';
+import 'package:telegram_clone/presentation/main/bloc/main_bloc.dart';
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes_name.dart';
@@ -26,22 +23,14 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SettingBloc(
-            contactsRepository:
-                UserContactsRepository(firestore: FirebaseFirestore.instance),
-          ),
+          create: (context) => MainBloc()..add(GetUserEvent()),
         ),
-        BlocProvider(
-          create: (context) => SettingCubit(
-            contactsRepository:
-                UserContactsRepository(firestore: FirebaseFirestore.instance),
-          ),
-        ),
+
       ],
       child: const KeyboardDismisser(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.login,
+          initialRoute: RoutesName.splash,
           onGenerateRoute: AppRoutes.onGenerateRoute,
         ),
       ),

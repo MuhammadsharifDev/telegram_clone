@@ -16,6 +16,7 @@ class LoginPage extends StatelessWidget {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final users = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class LoginPage extends StatelessWidget {
                 return const MainPage();
               } else {
                 return Scaffold(
+
                   appBar: AppBar(
                     title: const TitleWidget(),
                     leading: null,
