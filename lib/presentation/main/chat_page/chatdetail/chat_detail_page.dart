@@ -1,17 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telegram_clone/core/widgets/textfield/textfiled_model.dart';
 import 'package:telegram_clone/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:telegram_clone/presentation/main/bloc/main_bloc.dart';
+import 'package:telegram_clone/presentation/main/chat_page/chatdetail/widgets/appbar_title.dart';
+import 'package:telegram_clone/routes/routes_name.dart';
 
 class ChatDetailPage extends StatefulWidget {
-  const ChatDetailPage({super.key});
+  const ChatDetailPage({
+    super.key,
+    required this.name,
+  });
+
+  final String name;
 
   @override
   State<ChatDetailPage> createState() => _ChatDetailPageState();
 }
 
+
+
 class _ChatDetailPageState extends State<ChatDetailPage> {
-
-
+  List<QueryDocumentSnapshot> chats = [];
+  TextEditingController chatController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -21,17 +33,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           onPressed: () {},
           icon: const Icon(Icons.arrow_back),
         ),
-        title: const Row(
-          children: [
-            CircleAvatar(
-              radius: 25,
-              backgroundImage: AssetImage('assets/png_images/user2.jpg'),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text('Test'),
-          ],
+        title: AppBarTitleWidget(
+          name: widget.name,
         ),
         actions: [
           Row(
@@ -58,53 +61,77 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: <Widget>[
-                Container(color: Colors.black, height: 80),
-                Container(color: Colors.yellow, height: 83),
-                Container(color: Colors.red, height: 93),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    decoration: TextFormFiledModel.items(
-                      text: 'Message',
-                      suffixIcon: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.attach_file),
+          StreamBuilder(
+              stream:
+              FirebaseFirestore.instance.collection('chats').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  chats = snapshot.data!.docs.reversed.toList();
+                }
+                return Expanded(
+                  child: ListView(),
+                );
+              }),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(35.0),
+                    boxShadow: const [
+                      BoxShadow(
+                          offset: Offset(0, 3),
+                          blurRadius: 5,
+                          color: Colors.grey)
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                          icon: const Icon(
+                            Icons.face,
+                            color: Colors.blueAccent,
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.camera_alt_outlined),
-                          ),
-                        ],
+                          onPressed: () {}),
+                      const Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: "Type Something...",
+                              hintStyle: TextStyle(color: Colors.blueAccent),
+                              border: InputBorder.none),
+                        ),
                       ),
-                      prefixIcon: IconButton(
+                      IconButton(
+                        icon: const Icon(Icons.photo_camera,
+                            color: Colors.blueAccent),
                         onPressed: () {},
-                        icon: const Icon(Icons.emoji_emotions_outlined),
                       ),
-                    ),
+                      IconButton(
+                        icon: const Icon(Icons.attach_file,
+                            color: Colors.blueAccent),
+                        onPressed: () {},
+                      )
+                    ],
                   ),
                 ),
-                const SizedBox(width: 8.0),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () {
-                  },
+              ),
+              const SizedBox(width: 15),
+              IconButton(
+                onPressed: () {
+                  CollectionReference collRef =
+                  FirebaseFirestore.instance.collection('chats');
+                  collRef.add({
+                    'chat': chatController.text,
+                  });
+                  chatController.clear();
+                },
+                icon: const Icon(
+                  Icons.send,
+                  color: Colors.blue,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

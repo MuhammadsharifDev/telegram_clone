@@ -43,7 +43,7 @@ sealed class AppRoutes {
         );
       case RoutesName.chatDetailPage:
         return MaterialPageRoute(
-          builder: (context) => const ChatDetailPage(),
+          builder: (context) =>  ChatDetailPage(name: settings.arguments as String,),
         );
       case RoutesName.signupPage:
         return MaterialPageRoute(
