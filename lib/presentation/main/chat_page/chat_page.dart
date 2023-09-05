@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telegram_clone/core/utils/app_colors.dart';
 import 'package:telegram_clone/core/widgets/textfield/textfiled_model.dart';
 import 'package:telegram_clone/presentation/main/bloc/main_bloc.dart';
-import 'package:telegram_clone/presentation/main/chat_page/widgets/user_item_widget.dart';
 import 'package:telegram_clone/routes/routes_name.dart';
 
 class ChatPage extends StatefulWidget {

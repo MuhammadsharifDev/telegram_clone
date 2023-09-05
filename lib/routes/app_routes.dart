@@ -39,11 +39,15 @@ sealed class AppRoutes {
         );
       case RoutesName.main:
         return MaterialPageRoute(
-          builder: (context) =>  MainPage(),
+          builder: (context) => MainPage(),
         );
       case RoutesName.chatDetailPage:
         return MaterialPageRoute(
-          builder: (context) =>  ChatDetailPage(name: settings.arguments as String,),
+          builder: (context) => ChatDetailPage(
+            name: settings.arguments as String,
+            recerverUserEamil: settings.arguments as String,
+            recerverUserId: settings.arguments as String,
+          ),
         );
       case RoutesName.signupPage:
         return MaterialPageRoute(
@@ -54,18 +58,17 @@ sealed class AppRoutes {
         );
       case RoutesName.editUser:
         return MaterialPageRoute(
-          builder: (context) =>   EditUserPage(),
+          builder: (context) => EditUserPage(),
         );
 
       case RoutesName.settingPage:
         return MaterialPageRoute(
-          builder: (context) =>   const SettingPage(),
+          builder: (context) => const SettingPage(),
         );
       case RoutesName.contactsPage:
         return MaterialPageRoute(
-          builder: (context) =>   const ContactsPage(),
+          builder: (context) => const ContactsPage(),
         );
-
     }
     return null;
   }
